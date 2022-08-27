@@ -67,4 +67,14 @@ router.delete('/:id', async (req, res) => {
   }
 })
 
+//Get all posts by userId
+router.get('/allPosts/:userId', async (req, res) => {
+  try {
+    const posts = await Post.find({userId:req.params.userId},{_id:0})
+    res.status(200).json(posts)
+  } catch (err) {
+    res.status(400).json('No available posts')
+  }
+})
+
 module.exports = router
