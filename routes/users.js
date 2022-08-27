@@ -1,5 +1,4 @@
-const { json } = require('express');
-const express = require('express');
+const express = require('express')
 const router = express.Router()
 const User = require('../model/user')
 
@@ -15,7 +14,7 @@ router.post('/', async (req, res) => {
     email:req.body.email
   })
   try {
-    user.save()
+    await user.save()
     res.status(200).json('User Added Successfully')
   } catch (err) {
     res.status(500).json('Error Occurred')
