@@ -20,6 +20,9 @@ app.use(express.json())
 const userRouter = require('./routes/users')
 app.use('/user',userRouter)
 
+const postRouter = require('./routes/posts')
+app.use('/post',postRouter)
+
 app.listen(port, () => {
   console.log('Server Started')
 })
