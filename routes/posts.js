@@ -39,4 +39,21 @@ router.get('/:id', async (req, res) => {
   }
 })
 
+//Update post
+router.put('/:id', async (req, res)=>{
+  try {
+    const post = await Post.findById(req.params.id)
+    post.userId = req.body.userId
+    post.date = req.body.date
+    post.time = req.body.time
+    post.title = req.body.title
+    post.body = req.body.body
+
+    await post.save()
+    res.status(200).json('Post updated successfully')
+  } catch (err) {
+    res.status(400).json('Error Occurred')
+  }
+})
+
 module.exports = router
