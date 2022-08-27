@@ -17,6 +17,9 @@ con.on('open', () => {
 
 app.use(express.json())
 
+const userRouter = require('./routes/users')
+app.use('/user',userRouter)
+
 app.listen(port, () => {
   console.log('Server Started')
 })
