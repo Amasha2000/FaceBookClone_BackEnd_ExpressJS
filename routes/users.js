@@ -1,3 +1,4 @@
+const { json } = require('express');
 const express = require('express');
 const router = express.Router()
 const User = require('../model/user')
@@ -20,3 +21,15 @@ router.post('/', async (req, res) => {
     res.status(500).json('Error Occurred')
   }
 })
+
+//Get all users
+router.get('/', async(req, res) => {
+  try {
+    const user = await User.find()
+    res.status(200).json(user)
+  } catch (err) {
+    res.status(500).json('Error Occurred')
+  }
+})
+
+module.exports = router
