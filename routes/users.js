@@ -41,4 +41,22 @@ router.get('/:id', async (req, res) => {
   }
 })
 
+//Update user
+router.put('/:id', async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id)
+    user.firstName = req.body.firstName
+    user.surname = req.body.surname
+    user.gender = req.body.gender
+    user.dateOfBirth = req.body.dateOfBirth
+    user.password = req.body.password
+    user.phoneNumber = req.body.phoneNumber
+    user.email = req.body.phoneNumber
+    await user.save()
+    res.status(200).json('User updated successfully')
+  } catch (err) {
+    res.status(400).json('Error Occurred')
+  }
+})
+
 module.exports = router
