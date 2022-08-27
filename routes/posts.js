@@ -29,4 +29,14 @@ router.get('/', async (req, res) => {
   }
 })
 
+//Get post by id
+router.get('/:id', async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id)
+    res.status(200).json(post)
+  } catch (err) {
+    res.status(400).json('No such a post')
+  }
+})
+
 module.exports = router
