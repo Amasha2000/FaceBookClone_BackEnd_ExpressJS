@@ -1,4 +1,5 @@
 const express = require('express')
+const { find } = require('../model/user')
 const router = express.Router()
 const User = require('../model/user')
 
@@ -67,6 +68,27 @@ router.delete('/:id', async (req, res) => {
     res.status(200).json('User deleted successfully')
   } catch (err) {
     res.status(400).json('Error Occurred')
+  }
+})
+
+//login
+router.get('/:email/:password', async (req, res) =>{
+  try {
+    const user = await User.findOne({
+      $and: [
+        { email: { $eq: req.params.email } }, {
+          password: { $eq: req.params.password },
+        }
+      ]
+    }
+    );
+    if (user) {
+      res.json('You have logged successfully')
+    } else {
+      res.json('Email or password is invalid')
+    }  
+  } catch (err) {
+     res.json({message:err})
   }
 })
 
