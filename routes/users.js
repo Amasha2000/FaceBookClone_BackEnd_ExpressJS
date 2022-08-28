@@ -1,5 +1,4 @@
 const express = require('express')
-const { find } = require('../model/user')
 const router = express.Router()
 const User = require('../model/user')
 
@@ -52,7 +51,7 @@ router.put('/:id', async (req, res) => {
     user.dateOfBirth = req.body.dateOfBirth
     user.password = req.body.password
     user.phoneNumber = req.body.phoneNumber
-    user.email = req.body.phoneNumber
+    user.email = req.body.email
     await user.save()
     res.status(200).json('User updated successfully')
   } catch (err) {
