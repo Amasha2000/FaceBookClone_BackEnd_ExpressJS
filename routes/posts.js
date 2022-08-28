@@ -78,3 +78,4 @@ router.get('/allPosts/:userId', async (req, res) => {
 })
 
 module.exports = router
+
